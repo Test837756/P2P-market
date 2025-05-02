@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto P2P Marketplace</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1 class="main-title">P2P-платформа</h1>
+  <div class="container">
+    <header>
+      <nav class="main-nav">
+        <button class="tab active" id="buy-tab">Купівля</button>
+        <button class="tab" id="sell-tab">Продаж</button>
+        <div class="crypto-tabs">
+          <button class="crypto active">USDT</button>
+          <button class="crypto">BTC</button>
+          <button class="crypto">ETH</button>
+          <button class="crypto">USDC</button>
+        </div>
+        <a href="wallet.html" class="refresh" style="margin-left:auto;">Мій гаманець</a>
+      </nav>
+    </header>
+    <section class="filters">
+      <input type="text" id="amount-filter" placeholder="Введіть суму">
+      <select id="currency-filter">
+        <option value="UAH">UAH</option>
+        <option value="USD">USD</option>
+      </select>
+      <select id="payment-filter">
+        <option value="">Усі способи оплати</option>
+        <option value="ПУМБ">ПУМБ</option>
+        <option value="ПриватБанк">ПриватБанк</option>
+        <option value="Monobank">Monobank</option>
+        <option value="A-Банк">A-Банк</option>
+        <option value="Izibank">Izibank</option>
+        <option value="Sense SuperApp">Sense SuperApp</option>
+      </select>
+      <input type="text" id="dealer-filter" placeholder="Мерчант (Dealer)">
+      <select id="sort-filter">
+        <option value="price-asc">Сортувати за зростанням</option>
+        <option value="price-desc">Сортувати за спаданням</option>
+        <option value="completion-desc">Сортувати за завершенням за спаданням</option>
+        <option value="completion-asc">Сортувати за завершенням за зростанням</option>
+      </select>
+    </section>
+    <section id="merchant-list-container">
+      <div class="merchant-header">
+        <span>Мерчант</span>
+        <span>Ціна</span>
+        <span>Доступно/Ліміт</span>
+        <span>Спосіб оплати</span>
+        <span>Торгівля</span>
+      </div>
+      <div id="merchant-list"></div>
+    </section>
+  </div>
+  <div id="purchase-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-body">
+        <div class="modal-merchant-info">
+          <div class="modal-avatar" id="modal-avatar"></div>
+          <div class="modal-merchant-details">
+            <div class="modal-merchant-name" id="modal-merchant-name"></div>
+            <div class="modal-merchant-status" id="modal-merchant-status"></div>
+            <div class="modal-merchant-orders" id="modal-merchant-orders"></div>
+            <div class="modal-merchant-completion" id="modal-merchant-completion"></div>
+          </div>
+        </div>
+        <div class="modal-merchant-extra" id="modal-merchant-extra"></div>
+        <div class="modal-merchant-price"><span>Ціна:</span> <span id="modal-price"></span></div>
+        <div class="modal-merchant-available"><span>Доступно:</span> <span id="modal-available"></span></div>
+        <div class="modal-merchant-limits"><span>Ліміт:</span> <span id="modal-limits"></span></div>
+        <div class="modal-merchant-payments"><span>Оплата:</span> <span id="modal-payments"></span></div>
+        <form id="purchase-form" autocomplete="off">
+          <label for="modal-amount">Ви сплачуєте</label>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="number" id="modal-amount" min="0" step="0.01" placeholder="0.00" style="flex:1;">
+            <button type="button" id="modal-max-btn" style="background: var(--bg-secondary); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 6px; padding: 7px 14px; font-weight: 600; cursor: pointer;">Max</button>
+          </div>
+          <div class="modal-balance-info" id="modal-balance-info"></div>
+          <div class="modal-max-hint" id="modal-max-hint"></div>
+          <div class="modal-limits-info" id="modal-limits-info"></div>
+          <label for="modal-usdt">Ви отримаєте</label>
+          <input type="text" id="modal-usdt" readonly>
+          <label for="modal-payment-method">Оплатити за допомогою</label>
+          <select id="modal-payment-method"></select>
+          <button type="submit" class="modal-buy-btn">Купити USDT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
